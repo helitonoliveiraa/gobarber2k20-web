@@ -32,7 +32,9 @@
     "import/prefer-default-export": "off",
     "@typescript-eslint/ban-types": "off",
     "no-use-before-define": "off",
+    "react/prop-types": "off",
     "camelcase": "off",
+    "arrow-parens":"off",
     "import/extensions": [
       "error",
       "ignorePackages",

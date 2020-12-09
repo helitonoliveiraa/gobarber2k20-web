@@ -1,7 +1,14 @@
 import React from 'react';
 
-function App() {
-  return <h1>Hello</h1>;
-}
+import Theme from './context/theme';
+
+import GlobalStyle from './styles/global';
+
+const App: React.FC = () => (
+  <Theme>
+    <h1>Hello</h1>
+    <GlobalStyle />
+  </Theme>
+);
 
 export default App;
