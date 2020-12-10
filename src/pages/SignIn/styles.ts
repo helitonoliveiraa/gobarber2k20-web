@@ -32,6 +32,10 @@ export const Content = styled.div`
       font-size: 2.4rem;
     }
 
+    button {
+      margin-top: 2.4rem;
+    }
+
     a {
       display: block;
       margin-top: 2.4rem;

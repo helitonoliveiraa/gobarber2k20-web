@@ -31,6 +31,10 @@ export const Content = styled.div`
       margin-bottom: 2.4rem;
       font-size: 2.4rem;
     }
+
+    button {
+      margin-top: 1.6rem;
+    }
   }
 
   a {
