@@ -1,6 +1,12 @@
-import styled from 'styled-components';
+/* eslint-disable prettier/prettier */
+import styled, { css } from 'styled-components';
 
-export const Container = styled.div`
+interface InputProps {
+  isFocused: boolean;
+  isFilled: boolean;
+}
+
+export const Container = styled.div<InputProps>`
   width: 100%;
   display: flex;
   align-items: center;
@@ -12,12 +18,25 @@ export const Container = styled.div`
   color: ${({ theme }) => theme.colors.grayHard};
   font-size: 1.6rem;
 
+  ${({ isFocused }) =>
+    isFocused &&
+    css`
+      border-color: ${({ theme }) => theme.colors.orange};
+      color: ${({ theme }) => theme.colors.orange};
+    `}
+
   & + div {
     margin-top: 0.8rem;
   }
 
   svg {
     margin-right: 1.6rem;
+
+    ${({ isFilled }) =>
+    isFilled &&
+      css`
+        color: ${({ theme }) => theme.colors.orange};
+      `}
   }
 
   input {
