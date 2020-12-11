@@ -11,6 +11,8 @@ declare module 'styled-components' {
       blackMedium: string;
       background: string;
       inputs: string;
+
+      error: string;
     };
   }
 }

@@ -10,6 +10,8 @@ const theme: DefaultTheme = {
     blackMedium: '#28262E',
     background: '#312E38',
     inputs: '#232129',
+
+    error: '#F03442',
   },
 };
 
