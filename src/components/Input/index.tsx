@@ -20,7 +20,10 @@ const Input: React.FC<InputProps> = ({ name, icon: Icon, ...rest }) => {
   const [isFilled, setIsFilled] = useState(false);
 
   const inputRef = useRef<HTMLInputElement>(null);
-  const { fieldName, registerField, defaultValue } = useField(name);
+  // eslint-disable-next-line prettier/prettier
+  const {
+    fieldName, registerField, defaultValue, error,
+  } = useField(name);
 
   useEffect(() => {
     registerField({
@@ -50,6 +53,8 @@ const Input: React.FC<InputProps> = ({ name, icon: Icon, ...rest }) => {
         onFocus={handleInputFocus}
         onBlur={handleInputBlur}
       />
+
+      {error}
     </Container>
   );
 };

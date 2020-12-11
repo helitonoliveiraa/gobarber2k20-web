@@ -25,6 +25,12 @@ export const Container = styled.div<InputProps>`
       color: ${({ theme }) => theme.colors.orange};
     `}
 
+  ${({ isFilled }) =>
+    isFilled &&
+    css`
+      color: ${({ theme }) => theme.colors.orange};
+    `}
+
   & + div {
     margin-top: 0.8rem;
   }
@@ -32,11 +38,7 @@ export const Container = styled.div<InputProps>`
   svg {
     margin-right: 1.6rem;
 
-    ${({ isFilled }) =>
-    isFilled &&
-      css`
-        color: ${({ theme }) => theme.colors.orange};
-      `}
+
   }
 
   input {
