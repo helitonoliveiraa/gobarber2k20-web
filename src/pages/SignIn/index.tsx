@@ -5,7 +5,8 @@ import { Form } from '@unform/web';
 import * as Yup from 'yup';
 import getValidationErrors from '../../utils/validationErros';
 
-import { useAuth } from '../../context/AuthContext';
+import { useAuth } from '../../context/hooks/Auth';
+import { useToast } from '../../context/hooks/Toast';
 
 import logoImg from '../../assets/logo.svg';
 
@@ -23,6 +24,7 @@ const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
 
   const { user, signIn } = useAuth();
+  const { addToast } = useToast();
 
   console.log(user);
 
@@ -40,19 +42,21 @@ const SignIn: React.FC = () => {
 
         await schema.validate(data, { abortEarly: false });
 
-        signIn({
+        await signIn({
           email: data.email,
           password: data.password,
         });
       } catch (err) {
-        console.log(err);
+        if (err instanceof Yup.ValidationError) {
+          const errors = getValidationErrors(err);
 
-        const errors = getValidationErrors(err);
+          formRef.current?.setErrors(errors);
+        }
 
-        formRef.current?.setErrors(errors);
+        addToast();
       }
     },
-    [signIn],
+    [signIn, addToast],
   );
 
   return (
@@ -65,7 +69,12 @@ const SignIn: React.FC = () => {
 
           <Input name="email" icon={FiMail} placeholder="E-mail" />
 
-          <Input name="password" icon={FiLock} placeholder="Senha" />
+          <Input
+            type="password"
+            name="password"
+            icon={FiLock}
+            placeholder="Senha"
+          />
 
           <Button type="submit">Entrar</Button>
 
