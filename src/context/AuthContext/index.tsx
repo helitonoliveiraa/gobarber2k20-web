@@ -1,4 +1,10 @@
-import React, { createContext, useCallback, useState } from 'react';
+import React, {
+  // eslint-disable-next-line indent
+  createContext,
+  useCallback,
+  useContext,
+  useState,
+} from 'react';
 
 import api from '../../services/api';
 
@@ -17,11 +23,9 @@ interface AuthContextData {
   signIn(credentials: SignInCredenctial): Promise<void>;
 }
 
-export const AuthContext = createContext<AuthContextData>(
-  {} as AuthContextData,
-);
+const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
-export const AuthProvider: React.FC = ({ children }) => {
+const AuthProvider: React.FC = ({ children }) => {
   const [data, setData] = useState<AuthState>(() => {
     const token = localStorage.getItem('@GoBarber:token');
     const user = localStorage.getItem('@GoBarber:user');
@@ -57,4 +61,15 @@ export const AuthProvider: React.FC = ({ children }) => {
   );
 };
 
-export default AuthContext;
+// Auth custom Hook
+function useAuth(): AuthContextData {
+  const context = useContext(AuthContext);
+
+  if (!context) {
+    throw new Error('useAuth must be used within an authProvider');
+  }
+
+  return context;
+}
+
+export { AuthProvider, useAuth };
