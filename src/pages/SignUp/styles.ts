@@ -1,5 +1,5 @@
 /* eslint-disable indent */
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { shade } from 'polished';
 
 import backgroundImg from '../../assets/sign-up-background.png';
@@ -19,6 +19,29 @@ export const Content = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+`;
+
+const apearFromRight = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
+
+export const AnimationContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  max-width: 36rem;
+  width: 100%;
+
+  animation: ${apearFromRight} 0.7s ease-in;
 
   form {
     max-width: 36rem;

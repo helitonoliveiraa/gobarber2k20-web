@@ -34,6 +34,7 @@
     "react/jsx-props-no-spreading": "off",
     "no-use-before-define": "off",
     "implicit-arrow-linebreak": "off",
+    "no-confusing-arrow":"off",
     "react/prop-types": "off",
     "operator-linebreak": "off",
     "no-unused-vars":"off",
