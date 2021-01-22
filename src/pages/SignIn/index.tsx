@@ -57,7 +57,6 @@ const SignIn: React.FC = () => {
 
         history.push('/dashboard');
       } catch (err) {
-        console.log({ err });
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
 
@@ -73,7 +72,7 @@ const SignIn: React.FC = () => {
         });
       }
     },
-    [signIn, addToast],
+    [signIn, addToast, history],
   );
 
   return (
