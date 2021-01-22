@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom';
 
 import getValidationErrors from '../../utils/validationErros';
 
-// import { useAuth } from '../../context/hooks/Auth';
 import { useToast } from '../../context/hooks/Toast';
 
 import logoImg from '../../assets/logo.svg';
@@ -61,7 +60,6 @@ const ForgotPassword: React.FC = () => {
             'Enviamos um e-mail para confirmar a recuperação da senha, cheque sua caixa de entrada.',
         });
       } catch (err) {
-        console.log({ err });
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
 
