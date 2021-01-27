@@ -1,4 +1,6 @@
 import styled, { css } from 'styled-components';
+import { FiArrowRight, FiArrowLeft } from 'react-icons/fi';
+import { CustumCalendar } from '../../components/CustomCalendar/styles';
 
 export const Container = styled.div``;
 
@@ -206,6 +208,7 @@ export const Appointment = styled.div`
     ${clockWrapper};
     margin-left: 0;
     font-size: 1.6rem;
+    width: 7rem;
 
     svg {
       ${clockSvg}
@@ -232,10 +235,8 @@ export const Appointment = styled.div`
 `;
 
 export const Calendar = styled.aside`
-  ${({ theme }) => css`
-    flex: 1;
-    max-width: 360px;
-    width: 100%;
-    background: ${theme.colors.gray};
-  `}
+  max-width: 380px;
+  width: 100%;
+
+  ${CustumCalendar};
 `;
