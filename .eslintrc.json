@@ -37,6 +37,7 @@
     "no-confusing-arrow":"off",
     "react/prop-types": "off",
     "operator-linebreak": "off",
+    "import/no-duplicates": "off",
     "no-unused-vars":"off",
     "camelcase": "off",
     "arrow-parens":"off",
