@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { lighten } from 'polished';
+import { lighten, shade } from 'polished';
 import { CustumCalendar } from '../../components/CustomCalendar/styles';
 
 export const Container = styled.div``;
@@ -60,10 +60,16 @@ export const Profile = styled.div`
           line-height: 2.6rem;
         }
 
-        strong {
+        a {
+          text-decoration: none;
           font-size: 1.6rem;
           color: ${theme.colors.orange};
           line-height: 2.6rem;
+          transition: color 0.2s;
+
+          &:hover {
+            color: ${shade(0.2, theme.colors.orange)};
+          }
         }
       }
     `}
