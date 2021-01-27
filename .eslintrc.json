@@ -32,6 +32,8 @@
     "import/prefer-default-export": "off",
     "@typescript-eslint/ban-types": "off",
     "react/jsx-props-no-spreading": "off",
+    "object-curly-newline": "off",
+    "function-paren-newline": "off",
     "no-use-before-define": "off",
     "implicit-arrow-linebreak": "off",
     "no-confusing-arrow":"off",
