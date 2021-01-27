@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { FiArrowRight, FiArrowLeft } from 'react-icons/fi';
+import { lighten } from 'polished';
 import { CustumCalendar } from '../../components/CustomCalendar/styles';
 
 export const Container = styled.div``;
@@ -192,6 +192,11 @@ export const Section = styled.section`
       padding-bottom: 1.6rem;
       margin-bottom: 2.4rem;
       border-bottom: 0.1rem solid ${theme.colors.shape};
+    }
+
+    > p {
+      color: ${lighten(0.4, theme.colors.gray)};
+      opacity: 0.2;
     }
   `}
 `;
