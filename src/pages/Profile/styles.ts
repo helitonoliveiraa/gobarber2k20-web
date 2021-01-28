@@ -72,12 +72,12 @@ export const PhotoContainer = styled.div`
       width: 18.6rem;
       height: 18.6rem;
       border-radius: 50%;
+      object-fit: cover;
     }
 
-    > button {
+    > label {
       width: 4.8rem;
       height: 4.8rem;
-      border: none;
       border-radius: 50%;
       background: ${theme.colors.orange};
       display: flex;
@@ -86,6 +86,7 @@ export const PhotoContainer = styled.div`
       position: absolute;
       right: 0.5rem;
       bottom: 0.5rem;
+      cursor: pointer;
       transition: background 0.2s;
 
       &:hover {
@@ -96,6 +97,10 @@ export const PhotoContainer = styled.div`
         color: ${theme.colors.background};
         width: 2rem;
         height: 2rem;
+      }
+
+      input {
+        display: none;
       }
     }
   `}
