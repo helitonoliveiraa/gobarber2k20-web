@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, { ChangeEvent, useCallback, useRef } from 'react';
 import {
   // eslint-disable-next-line indent
@@ -32,7 +33,9 @@ import { useAuth } from '../../context/hooks/Auth';
 interface SignUpFormData {
   name: string;
   email: string;
+  old_password: string;
   password: string;
+  password_confirmation: string;
 }
 
 const Profile: React.FC = () => {
@@ -53,22 +56,57 @@ const Profile: React.FC = () => {
           email: Yup.string()
             .email('Digite um e-mail válido')
             .required('E-mail é obrigatório'),
-          password: Yup.string()
-            .required('Senha é obrigatória')
-            .min(6, 'No mínimo 6 digitos'),
+          old_password: Yup.string(),
+          password: Yup.string().when('old_password', {
+            is: (val: string) => !!val.length,
+            then: Yup.string()
+              .min(6, 'Mínimo de 6 dígitos')
+              .required('Nova senha é obrigatória'),
+            otherwise: Yup.string(),
+          }),
+          password_confirmation: Yup.string()
+            .when('old_password', {
+              is: (val: string) => !!val.length,
+              then: Yup.string().required('Confirme a nova senha'),
+              otherwise: Yup.string(),
+            })
+            .oneOf([Yup.ref('password'), null], 'Confirmação incorreta'),
         });
 
         await schema.validate(data, { abortEarly: false });
 
-        await api.post('/users', data);
+        const {
+          name,
+          email,
+          old_password,
+          password,
+          password_confirmation,
+        } = data;
+
+        const formData = {
+          name,
+          email,
+          ...(old_password
+            ? {
+              old_password,
+              password,
+              password_confirmation,
+            }
+            : {}),
+        };
+
+        const response = await api.put('/profile', formData);
+
+        updateUser(response.data);
 
         addToast({
           type: 'success',
-          title: 'Cadastro realizado!',
-          description: 'Vocẽ já pode fazer seu logon no GoBarber!',
+          title: 'Perfil atualizado!',
+          description:
+            'Suas informações do perfil foram atualizadas com sucesso!',
         });
 
-        history.push('/');
+        history.push('/dashboard');
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
@@ -80,8 +118,8 @@ const Profile: React.FC = () => {
 
         addToast({
           type: 'error',
-          title: 'Erro no cadastro!',
-          description: 'Ocorreu um erro ao fazer cadastro, tente novamente.',
+          title: 'Erro na atualização!',
+          description: 'Ocorreu um erro ao atualizar perfil, tente novamente.',
         });
       }
     },
@@ -94,7 +132,6 @@ const Profile: React.FC = () => {
         const data = new FormData();
 
         data.append('avatar', event.target.files[0]);
-        console.log(event.target.files[0]);
 
         const response = await api.patch('/users/avatar', data);
 
@@ -147,15 +184,15 @@ const Profile: React.FC = () => {
 
             <Input
               containerStyle={{ marginTop: 24 }}
-              type="old_password"
-              name="password"
+              type="password"
+              name="old_password"
               icon={FiLock}
               placeholder="Senha atual"
             />
 
             <Input
-              name="password"
               type="password"
+              name="password"
               icon={FiLock}
               placeholder="Nova senha"
             />
