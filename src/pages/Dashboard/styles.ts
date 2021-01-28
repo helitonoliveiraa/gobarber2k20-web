@@ -50,6 +50,7 @@ export const Profile = styled.div`
         height: 5.6rem;
         border-radius: 50%;
         margin: 0 1.6rem 0 8rem;
+        object-fit: cover;
       }
 
       div {
@@ -170,6 +171,7 @@ export const NextAppointment = styled.div`
         width: 8rem;
         height: 8rem;
         border-radius: 50%;
+        object-fit: cover;
       }
 
       strong {
@@ -236,6 +238,7 @@ export const Appointment = styled.div`
       width: 5.6rem;
       height: 5.6rem;
       border-radius: 50%;
+      object-fit: cover;
     }
 
     strong {
