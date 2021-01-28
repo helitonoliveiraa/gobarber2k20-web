@@ -1,6 +1,26 @@
-import styled, { css } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 import { lighten, shade } from 'polished';
 import { CustumCalendar } from '../../components/CustomCalendar/styles';
+
+const fade = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
+
+const apearFromLeft = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(-5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
 
 export const Container = styled.div``;
 
@@ -23,6 +43,7 @@ export const HeaderContent = styled.div`
 
       > img {
         height: 8rem;
+        animation: ${apearFromLeft} 1s ease-in;
       }
 
       button {
@@ -31,6 +52,8 @@ export const HeaderContent = styled.div`
         background: transparent;
         color: ${theme.colors.gray};
         transition: color 0.2s;
+
+        animation: ${fade} 1s ease-in;
 
         &:hover {
           color: ${theme.colors.error};
@@ -44,6 +67,8 @@ export const Profile = styled.div`
     css`
       display: flex;
       align-items: center;
+
+      animation: ${fade} 1s ease-in;
 
       > img {
         width: 5.6rem;
