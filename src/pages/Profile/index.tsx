@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from 'react';
+import React, { ChangeEvent, useCallback, useRef } from 'react';
 import {
   // eslint-disable-next-line indent
   FiCamera,
@@ -41,7 +41,7 @@ const Profile: React.FC = () => {
   const history = useHistory();
   const { addToast } = useToast();
 
-  const { user } = useAuth();
+  const { user, updateUser } = useAuth();
 
   const handleSubmit = useCallback(
     async (data: SignUpFormData) => {
@@ -88,6 +88,27 @@ const Profile: React.FC = () => {
     [addToast, history],
   );
 
+  const handleAvatarChange = useCallback(
+    async (event: ChangeEvent<HTMLInputElement>) => {
+      if (event.target.files) {
+        const data = new FormData();
+
+        data.append('avatar', event.target.files[0]);
+        console.log(event.target.files[0]);
+
+        const response = await api.patch('/users/avatar', data);
+
+        updateUser(response.data);
+
+        addToast({
+          type: 'success',
+          title: 'Avatar atualizado!',
+        });
+      }
+    },
+    [addToast, updateUser],
+  );
+
   return (
     <Container>
       <Header>
@@ -99,9 +120,11 @@ const Profile: React.FC = () => {
           <PhotoContainer>
             <img src={user.avatar_url} alt={user.name} />
 
-            <button type="button">
+            <label htmlFor="avatar">
               <FiCamera />
-            </button>
+
+              <input type="file" id="avatar" onChange={handleAvatarChange} />
+            </label>
           </PhotoContainer>
         </HeaderContent>
       </Header>
