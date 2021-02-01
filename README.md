@@ -25,3 +25,8 @@
 <p align="center">
   <img src="./.github/animation.gif">
 </p>
+
+<p align="center">
+  <img src="./.github/animation2.gif">
+</p>
+

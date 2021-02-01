@@ -1,6 +1,26 @@
-import styled, { css } from 'styled-components';
-import { lighten } from 'polished';
+import styled, { css, keyframes } from 'styled-components';
+import { lighten, shade } from 'polished';
 import { CustumCalendar } from '../../components/CustomCalendar/styles';
+
+const fade = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
+
+const apearFromLeft = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(-5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
 
 export const Container = styled.div``;
 
@@ -23,6 +43,7 @@ export const HeaderContent = styled.div`
 
       > img {
         height: 8rem;
+        animation: ${apearFromLeft} 1s ease-in;
       }
 
       button {
@@ -31,6 +52,8 @@ export const HeaderContent = styled.div`
         background: transparent;
         color: ${theme.colors.gray};
         transition: color 0.2s;
+
+        animation: ${fade} 1s ease-in;
 
         &:hover {
           color: ${theme.colors.error};
@@ -45,11 +68,14 @@ export const Profile = styled.div`
       display: flex;
       align-items: center;
 
+      animation: ${fade} 1s ease-in;
+
       > img {
         width: 5.6rem;
         height: 5.6rem;
         border-radius: 50%;
         margin: 0 1.6rem 0 8rem;
+        object-fit: cover;
       }
 
       div {
@@ -60,10 +86,16 @@ export const Profile = styled.div`
           line-height: 2.6rem;
         }
 
-        strong {
+        a {
+          text-decoration: none;
           font-size: 1.6rem;
           color: ${theme.colors.orange};
           line-height: 2.6rem;
+          transition: color 0.2s;
+
+          &:hover {
+            color: ${shade(0.2, theme.colors.orange)};
+          }
         }
       }
     `}
@@ -164,6 +196,7 @@ export const NextAppointment = styled.div`
         width: 8rem;
         height: 8rem;
         border-radius: 50%;
+        object-fit: cover;
       }
 
       strong {
@@ -230,6 +263,7 @@ export const Appointment = styled.div`
       width: 5.6rem;
       height: 5.6rem;
       border-radius: 50%;
+      object-fit: cover;
     }
 
     strong {
