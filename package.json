@@ -39,7 +39,7 @@
     "collectCoverageFrom": [
       "src/pages/**/*.tsx",
       "src/components/**/*.tsx",
-      "src/context/hooks/**/.tsx"
+      "src/context/hooks/*.tsx"
     ]
   },
   "browserslist": {
