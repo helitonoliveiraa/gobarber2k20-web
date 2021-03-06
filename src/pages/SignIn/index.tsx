@@ -1,9 +1,10 @@
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import { FiLogIn, FiMail, FiLock } from 'react-icons/fi';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
 import { Link, useHistory } from 'react-router-dom';
+import Loader from 'react-loader-spinner';
 
 import getValidationErrors from '../../utils/validationErros';
 
@@ -29,6 +30,7 @@ interface SignInFormData {
 }
 
 const SignIn: React.FC = () => {
+  const [loading, setLoading] = useState(false);
   const formRef = useRef<FormHandles>(null);
 
   const history = useHistory();
@@ -39,6 +41,8 @@ const SignIn: React.FC = () => {
   const handleLogin = useCallback(
     async (data: SignInFormData) => {
       try {
+        setLoading(true);
+
         formRef.current?.setErrors({});
 
         const schema = Yup.object().shape({
@@ -70,6 +74,8 @@ const SignIn: React.FC = () => {
           title: 'Erro na autenticação!',
           description: 'Ocorreu um erro ao fazer login, cheque as credenciais.',
         });
+      } finally {
+        setLoading(false);
       }
     },
     [signIn, addToast, history],
@@ -93,7 +99,9 @@ const SignIn: React.FC = () => {
               placeholder="Senha"
             />
 
-            <Button type="submit">Entrar</Button>
+            <Button type="submit" loading={loading}>
+              Entrar
+            </Button>
 
             <Link to="/forgot-password">Esqueci minha senha</Link>
           </Form>

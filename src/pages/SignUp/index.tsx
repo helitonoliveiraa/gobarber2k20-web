@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import {
   // eslint-disable-next-line indent
   FiArrowLeft,
@@ -35,6 +35,7 @@ interface SignUpFormData {
 }
 
 const SignUp: React.FC = () => {
+  const [loading, setLoading] = useState(false);
   const formRef = useRef<FormHandles>(null);
 
   const history = useHistory();
@@ -43,6 +44,8 @@ const SignUp: React.FC = () => {
   const handleSubmit = useCallback(
     async (data: SignUpFormData) => {
       try {
+        setLoading(true);
+
         formRef.current?.setErrors({});
 
         const schema = Yup.object().shape({
@@ -80,6 +83,8 @@ const SignUp: React.FC = () => {
           title: 'Erro no cadastro!',
           description: 'Ocorreu um erro ao fazer cadastro, tente novamente.',
         });
+      } finally {
+        setLoading(false);
       }
     },
     [addToast, history],
@@ -107,7 +112,9 @@ const SignUp: React.FC = () => {
               placeholder="Senha"
             />
 
-            <Button type="submit">Cadastrar</Button>
+            <Button type="submit" loading={loading}>
+              Cadastrar
+            </Button>
           </Form>
 
           <Link to="/">
