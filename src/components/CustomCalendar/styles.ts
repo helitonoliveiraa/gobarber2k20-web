@@ -5,7 +5,7 @@ export const CustumCalendar = css`
   ${({ theme }) => css`
     .DayPicker {
       background: ${theme.colors.blackMedium};
-      border-radius: 10px;
+      border-radius: 1rem;
     }
 
     .DayPicker-wrapper {
@@ -49,14 +49,14 @@ export const CustumCalendar = css`
 
     .DayPicker-Month {
       border-collapse: separate;
-      border-spacing: 8px;
+      border-spacing: 0.8rem;
       margin: 0;
       margin-bottom: 1.6rem;
     }
 
     .DayPicker-Day {
-      width: 40px;
-      height: 40px;
+      width: 4rem;
+      height: 4rem;
     }
 
     .DayPicker-WeekdaysRow,
@@ -76,7 +76,7 @@ export const CustumCalendar = css`
 
     .DayPicker-Day--available:not(.DayPicker-Day--outside) {
       background: ${theme.colors.shape};
-      border-radius: 10px;
+      border-radius: 1rem;
       color: ${theme.colors.white};
     }
 
@@ -96,7 +96,7 @@ export const CustumCalendar = css`
 
     .DayPicker-Day--selected {
       background: ${theme.colors.orange} !important;
-      border-radius: 10px;
+      border-radius: 1rem;
       color: ${theme.colors.inputs} !important;
     }
   `}

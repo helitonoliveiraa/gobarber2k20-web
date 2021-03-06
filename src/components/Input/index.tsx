@@ -58,7 +58,7 @@ const Input: React.FC<InputProps> = ({
       isFilled={isFilled}
       data-testid="input-container"
     >
-      {Icon && <Icon size={20} />}
+      {Icon && <Icon size="2rem" />}
       <input
         {...rest}
         ref={inputRef}
@@ -69,7 +69,7 @@ const Input: React.FC<InputProps> = ({
 
       {error && (
         <Error title={error}>
-          <FiAlertCircle size={20} />
+          <FiAlertCircle size="2rem" />
         </Error>
       )}
     </Container>

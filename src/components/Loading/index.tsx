@@ -4,7 +4,13 @@ import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 
 const Loading: React.FC = () => (
   <div style={{ alignSelf: 'center' }}>
-    <Loader type="Puff" color="#FF9000" height={50} width={50} timeout={0} />
+    <Loader
+      type="Puff"
+      color="#FF9000"
+      height="5rem"
+      width="5rem"
+      timeout={0}
+    />
   </div>
 );
 

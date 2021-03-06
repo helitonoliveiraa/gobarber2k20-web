@@ -19,6 +19,7 @@ export const Content = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 0 2rem;
 `;
 
 const apearFromRight = keyframes`
@@ -42,6 +43,10 @@ export const AnimationContainer = styled.div`
   width: 100%;
 
   animation: ${apearFromRight} 0.7s ease-in;
+
+  img {
+    width: 23.1rem;
+  }
 
   form {
     max-width: 36rem;

@@ -107,7 +107,7 @@ const SignIn: React.FC = () => {
           </Form>
 
           <Link to="/signup">
-            <FiLogIn size={20} />
+            <FiLogIn size="2rem" />
             Criar conta
           </Link>
         </AnimationContainer>

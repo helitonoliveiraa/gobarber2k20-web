@@ -13,6 +13,7 @@ export const Container = styled.div`
 export const Content = styled.div`
   max-width: 66rem;
   width: 100%;
+  padding: 0 2rem;
 
   display: flex;
   flex-direction: column;
@@ -40,6 +41,10 @@ export const AnimationContainer = styled.div`
   justify-content: center;
 
   animation: ${apearFromLeft} 0.7s ease-in;
+
+  img {
+    width: 23.1rem;
+  }
 
   form {
     max-width: 36rem;
