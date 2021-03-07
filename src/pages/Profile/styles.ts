@@ -70,8 +70,11 @@ export const Header = styled.header`
       background: ${theme.colors.blackMedium};
       display: flex;
       align-items: center;
-      padding: 3.2rem 0;
+      padding: 3.2rem 2rem;
       height: 14.4rem;
+
+      box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.19),
+        0 0.6rem 0.6rem rgba(0, 0, 0, 0.23);
     `}
 `;
 
@@ -122,6 +125,9 @@ export const PhotoContainer = styled.div`
       height: 18.6rem;
       border-radius: 50%;
       object-fit: cover;
+
+      box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.19),
+        0 0.6rem 0.6rem rgba(0, 0, 0, 0.23);
     }
 
     > label {
@@ -161,6 +167,7 @@ export const Content = styled.div`
   max-width: 66rem;
   width: 100%;
   margin: 3.2rem auto 0;
+  padding: 0 2rem;
 
   display: flex;
   flex-direction: column;

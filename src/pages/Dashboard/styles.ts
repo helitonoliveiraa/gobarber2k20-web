@@ -11,10 +11,38 @@ const fade = keyframes`
   }
 `;
 
+const blink = keyframes`
+  0% { border: 2px solid rgba(255, 144, 0, 0.3) }
+  25% { border: 2px solid rgba(255, 144, 0, 0.5) }
+  50% { border: 2px solid rgba(255, 144, 0, 0.8) }
+  75% { border: 2px solid rgba(255, 144, 0, 0.5) }
+  100% { border: 2px solid rgba(255, 144, 0, 0.3)}
+`;
+
+const fadeInParagrath = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.2;
+  }
+`;
+
 const apearFromLeft = keyframes`
   from {
     opacity: 0;
     transform: translateX(-5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
+
+const apearFromRight = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(4rem);
   }
   to {
     opacity: 1;
@@ -29,7 +57,10 @@ export const Header = styled.header`
     css`
       background: ${theme.colors.blackMedium};
       align-items: center;
-      padding: 3.2rem 0;
+      padding: 3.2rem 2rem;
+
+      box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.19),
+        0 0.6rem 0.6rem rgba(0, 0, 0, 0.23);
     `}
 `;
 
@@ -41,6 +72,12 @@ export const HeaderContent = styled.div`
       display: flex;
       align-items: center;
 
+      @media (max-width: 600px) {
+        > img {
+          display: none;
+        }
+      }
+
       > img {
         height: 8rem;
         animation: ${apearFromLeft} 1s ease-in;
@@ -51,7 +88,7 @@ export const HeaderContent = styled.div`
         border: 0;
         background: transparent;
         color: ${theme.colors.gray};
-        transition: color 0.2s;
+        transition: color 0.2s ease-in-out;
 
         animation: ${fade} 1s ease-in;
 
@@ -76,6 +113,10 @@ export const Profile = styled.div`
         border-radius: 50%;
         margin: 0 1.6rem 0 8rem;
         object-fit: cover;
+
+        @media (max-width: 600px) {
+          margin-left: 0;
+        }
       }
 
       div {
@@ -102,10 +143,19 @@ export const Profile = styled.div`
 `;
 
 export const Content = styled.main`
+  position: relative;
   max-width: 1120px;
   margin: 6.4rem auto;
 
   display: flex;
+
+  @media (max-width: 1160px) {
+    padding: 0 2rem;
+  }
+
+  @media (max-width: 900px) {
+    flex-direction: column;
+  }
 `;
 
 export const Schedule = styled.div`
@@ -137,6 +187,19 @@ export const Schedule = styled.div`
           margin: 0 0.8rem;
         }
       }
+    }
+
+    @media (max-width: 1040px) {
+      margin-right: 6rem;
+    }
+
+    @media (max-width: 980px) {
+      margin-right: 3rem;
+    }
+
+    @media (max-width: 900px) {
+      margin-top: 40rem;
+      margin-right: 0;
     }
   `}
 `;
@@ -182,6 +245,13 @@ export const NextAppointment = styled.div`
 
     div {
       ${appointmentCard};
+      z-index: 5;
+
+      animation: ${blink} 2s infinite;
+      animation: ${apearFromRight} 1s linear;
+
+      box-shadow: 0 0.5rem 0.6rem rgba(0, 0, 0, 0.19),
+        0 0.3rem 0.3rem rgba(0, 0, 0, 0.23);
 
       &::before {
         content: '';
@@ -218,6 +288,8 @@ export const NextAppointment = styled.div`
 export const Section = styled.section`
   ${({ theme }) => css`
     margin-top: 4.8rem;
+    display: flex;
+    flex-direction: column;
 
     > strong {
       ${strongText}
@@ -228,6 +300,7 @@ export const Section = styled.section`
     }
 
     > p {
+      animation: ${fadeInParagrath} 1s ease-in;
       color: ${lighten(0.4, theme.colors.gray)};
       opacity: 0.2;
     }
@@ -237,6 +310,8 @@ export const Section = styled.section`
 export const Appointment = styled.div`
   display: flex;
   align-items: center;
+
+  animation: ${fade} 1s ease-in;
 
   & + & {
     margin-top: 1.6rem;
@@ -258,12 +333,17 @@ export const Appointment = styled.div`
     margin-top: 0;
     margin-left: 2.6rem;
     padding: 1.6rem;
+    box-shadow: 0 0.5rem 0.6rem rgba(0, 0, 0, 0.19),
+      0 0.3rem 0.3rem rgba(0, 0, 0, 0.23);
+
+    animation: ${apearFromRight} 1s linear;
 
     img {
       width: 5.6rem;
       height: 5.6rem;
       border-radius: 50%;
       object-fit: cover;
+      background-color: #333;
     }
 
     strong {
@@ -277,5 +357,16 @@ export const Calendar = styled.aside`
   max-width: 380px;
   width: 100%;
 
+  animation: ${fade} 1s ease-in;
+
   ${CustumCalendar};
+
+  @media (max-width: 900px) {
+    position: absolute;
+    right: 0;
+    left: 0;
+
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
 `;
