@@ -4,8 +4,6 @@ import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
 import { Link, useHistory } from 'react-router-dom';
-import Loader from 'react-loader-spinner';
-
 import getValidationErrors from '../../utils/validationErros';
 
 import { useAuth } from '../../context/hooks/Auth';

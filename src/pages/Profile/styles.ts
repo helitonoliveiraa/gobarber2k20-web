@@ -1,62 +1,11 @@
 /* eslint-disable indent */
-import styled, { keyframes, css } from 'styled-components';
+import styled, { css } from 'styled-components';
 import { shade } from 'polished';
-
-const fade = keyframes`
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-`;
-
-const apearFromTop = keyframes`
-  0% {
-    opacity: 0;
-    transform: translateY(-8rem);
-  }
-  10% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  30% {
-    opacity: 1;
-    transform: translateY(-1.5rem);
-  }
-  50% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  65% {
-    opacity: 1;
-    transform: translateY(-0.7rem);
-  }
-  80% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  90% {
-    opacity: 1;
-    transform: translateY(-0.3rem);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-`;
-
-const fadeIcon = keyframes`
-  0% {
-    opacity: 0;
-  }
-  90% {
-    opacity: 0.01;
-  }
-  100% {
-    opacity: 1;
-  }
-`;
+import {
+  FADE,
+  AVATAR_APPEAR_FROM_TOP,
+  FADE_ICON_IN_AVATAR,
+} from '../../constants/animations';
 
 export const Container = styled.div`
   height: 100vh;
@@ -94,7 +43,7 @@ export const HeaderContent = styled.div`
         padding: 1rem;
         transition: color 0.2s;
 
-        animation: ${fade} 1s ease-in;
+        animation: ${FADE} 1s ease-in;
 
         &:hover {
           color: ${shade(0.2, theme.colors.gray)};
@@ -118,7 +67,7 @@ export const PhotoContainer = styled.div`
     right: 0;
     left: 0;
 
-    animation: ${apearFromTop} 1s;
+    animation: ${AVATAR_APPEAR_FROM_TOP} 1s;
 
     img {
       width: 18.6rem;
@@ -144,7 +93,7 @@ export const PhotoContainer = styled.div`
       cursor: pointer;
       transition: background 0.2s;
 
-      animation: ${fadeIcon} 1s;
+      animation: ${FADE_ICON_IN_AVATAR} 1s;
 
       &:hover {
         background: ${shade(0.2, theme.colors.orange)};
@@ -184,7 +133,7 @@ export const AnimationContainer = styled.div`
   max-width: 36rem;
   width: 100%;
 
-  animation: ${fade} 1s ease-in;
+  animation: ${FADE} 1s ease-in;
 
   form {
     max-width: 36rem;

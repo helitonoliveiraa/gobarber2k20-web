@@ -1,54 +1,14 @@
-import styled, { css, keyframes } from 'styled-components';
+import styled, { css } from 'styled-components';
 import { lighten, shade } from 'polished';
+import {
+  APPEAR_FROM_LEFT,
+  APPEAR_FROM_RIGHT,
+  FADE_IN_TEXT,
+  FADE,
+  BLINK_NEXT_APPOINTMENT,
+} from '../../constants/animations';
+
 import { CustumCalendar } from '../../components/CustomCalendar/styles';
-
-const fade = keyframes`
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-`;
-
-const blink = keyframes`
-  0% { border: 2px solid rgba(255, 144, 0, 0.3) }
-  25% { border: 2px solid rgba(255, 144, 0, 0.5) }
-  50% { border: 2px solid rgba(255, 144, 0, 0.8) }
-  75% { border: 2px solid rgba(255, 144, 0, 0.5) }
-  100% { border: 2px solid rgba(255, 144, 0, 0.3)}
-`;
-
-const fadeInParagrath = keyframes`
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 0.2;
-  }
-`;
-
-const apearFromLeft = keyframes`
-  from {
-    opacity: 0;
-    transform: translateX(-5rem);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-`;
-
-const apearFromRight = keyframes`
-  from {
-    opacity: 0;
-    transform: translateX(4rem);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-`;
 
 export const Container = styled.div``;
 
@@ -80,7 +40,7 @@ export const HeaderContent = styled.div`
 
       > img {
         height: 8rem;
-        animation: ${apearFromLeft} 1s ease-in;
+        animation: ${APPEAR_FROM_LEFT} 1s ease-in;
       }
 
       button {
@@ -90,7 +50,7 @@ export const HeaderContent = styled.div`
         color: ${theme.colors.gray};
         transition: color 0.2s ease-in-out;
 
-        animation: ${fade} 1s ease-in;
+        animation: ${FADE} 1s ease-in;
 
         &:hover {
           color: ${theme.colors.error};
@@ -105,7 +65,7 @@ export const Profile = styled.div`
       display: flex;
       align-items: center;
 
-      animation: ${fade} 1s ease-in;
+      animation: ${FADE} 1s ease-in;
 
       > img {
         width: 5.6rem;
@@ -247,8 +207,8 @@ export const NextAppointment = styled.div`
       ${appointmentCard};
       z-index: 5;
 
-      animation: ${blink} 2s infinite;
-      animation: ${apearFromRight} 1s linear;
+      animation: ${BLINK_NEXT_APPOINTMENT} 2s infinite;
+      animation: ${APPEAR_FROM_RIGHT} 1s linear;
 
       box-shadow: 0 0.5rem 0.6rem rgba(0, 0, 0, 0.19),
         0 0.3rem 0.3rem rgba(0, 0, 0, 0.23);
@@ -300,7 +260,7 @@ export const Section = styled.section`
     }
 
     > p {
-      animation: ${fadeInParagrath} 1s ease-in;
+      animation: ${FADE_IN_TEXT} 1s ease-in;
       color: ${lighten(0.4, theme.colors.gray)};
       opacity: 0.2;
     }
@@ -311,7 +271,7 @@ export const Appointment = styled.div`
   display: flex;
   align-items: center;
 
-  animation: ${fade} 1s ease-in;
+  animation: ${FADE} 1s ease-in;
 
   & + & {
     margin-top: 1.6rem;
@@ -336,7 +296,7 @@ export const Appointment = styled.div`
     box-shadow: 0 0.5rem 0.6rem rgba(0, 0, 0, 0.19),
       0 0.3rem 0.3rem rgba(0, 0, 0, 0.23);
 
-    animation: ${apearFromRight} 1s linear;
+    animation: ${APPEAR_FROM_RIGHT} 1s linear;
 
     img {
       width: 5.6rem;
@@ -357,7 +317,7 @@ export const Calendar = styled.aside`
   max-width: 380px;
   width: 100%;
 
-  animation: ${fade} 1s ease-in;
+  animation: ${FADE} 1s ease-in;
 
   ${CustumCalendar};
 

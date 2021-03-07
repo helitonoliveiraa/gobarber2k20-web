@@ -1,5 +1,6 @@
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import { shade } from 'polished';
+import { APPEAR_FROM_LEFT } from '../../constants/animations';
 
 import backgroundImg from '../../assets/sign-in-background.png';
 
@@ -10,7 +11,7 @@ export const Container = styled.div`
   align-items: stretch;
 `;
 
-export const Content = styled.div`
+export const Content = styled.main`
   max-width: 66rem;
   width: 100%;
   padding: 0 2rem;
@@ -21,18 +22,6 @@ export const Content = styled.div`
   justify-content: center;
 `;
 
-const apearFromLeft = keyframes`
-  from {
-    opacity: 0;
-    transform: translateX(-5rem);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-`;
-
 export const AnimationContainer = styled.div`
   width: 100%;
   display: flex;
@@ -40,7 +29,7 @@ export const AnimationContainer = styled.div`
   align-items: center;
   justify-content: center;
 
-  animation: ${apearFromLeft} 0.7s ease-in;
+  animation: ${APPEAR_FROM_LEFT} 0.7s ease-in;
 
   img {
     width: 23.1rem;
