@@ -1,5 +1,6 @@
 import React from 'react';
-import { Switch } from 'react-router-dom';
+import { Switch, useLocation } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
 
 import Route from './Route';
 
@@ -11,16 +12,22 @@ import ResetPassword from '../pages/ResetPassword';
 import Dashboard from '../pages/Dashboard';
 import Profile from '../pages/Profile';
 
-const Routes: React.FC = () => (
-  <Switch>
-    <Route path="/" exact component={SignIn} />
-    <Route path="/signup" component={SignUp} />
-    <Route path="/forgot-password" component={ForgotPassword} />
-    <Route path="/reset-password" component={ResetPassword} />
+const Routes: React.FC = () => {
+  const location = useLocation();
 
-    <Route path="/dashboard" component={Dashboard} isPrivate />
-    <Route path="/profile" component={Profile} isPrivate />
-  </Switch>
-);
+  return (
+    <AnimatePresence exitBeforeEnter initial={false}>
+      <Switch location={location} key={location.pathname}>
+        <Route path="/" exact component={SignIn} />
+        <Route path="/signup" component={SignUp} />
+        <Route path="/forgot-password" component={ForgotPassword} />
+        <Route path="/reset-password" component={ResetPassword} />
+
+        <Route path="/dashboard" component={Dashboard} isPrivate />
+        <Route path="/profile" component={Profile} isPrivate />
+      </Switch>
+    </AnimatePresence>
+  );
+};
 
 export default Routes;

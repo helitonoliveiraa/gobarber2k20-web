@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import { FiLock } from 'react-icons/fi';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
@@ -29,6 +29,7 @@ interface ResetPasswordFormData {
 }
 
 const ResetPassword: React.FC = () => {
+  const [loading, setLoading] = useState(false);
   const formRef = useRef<FormHandles>(null);
 
   const history = useHistory();
@@ -38,6 +39,8 @@ const ResetPassword: React.FC = () => {
   const handleLogin = useCallback(
     async (data: ResetPasswordFormData) => {
       try {
+        setLoading(true);
+
         formRef.current?.setErrors({});
 
         const schema = Yup.object().shape({
@@ -78,6 +81,8 @@ const ResetPassword: React.FC = () => {
           title: 'Erro na recuperação!',
           description: 'Ocorreu um erro ao resetar sua senha, tente novamente.',
         });
+      } finally {
+        setLoading(false);
       }
     },
     [addToast, history, location.search],
@@ -85,7 +90,12 @@ const ResetPassword: React.FC = () => {
 
   return (
     <Container>
-      <Content>
+      <Content
+        initial={{ scaleY: 1 }}
+        animate={{ scaleY: 1 }}
+        exit={{ scaleY: 0 }}
+        transition={{ duration: 0.5 }}
+      >
         <AnimationContainer>
           <img src={logoImg} alt="GoBarber" />
 
@@ -106,12 +116,19 @@ const ResetPassword: React.FC = () => {
               placeholder="Confirmação da senha"
             />
 
-            <Button type="submit">Alterar senha</Button>
+            <Button type="submit" loading={loading}>
+              Alterar senha
+            </Button>
           </Form>
         </AnimationContainer>
       </Content>
 
-      <Background />
+      <Background
+        initial={{ translateX: 0, opacity: 0 }}
+        animate={{ translateX: 0, opacity: 1 }}
+        exit={{ translateX: -700, opacity: 0 }}
+        transition={{ duration: 0.5 }}
+      />
     </Container>
   );
 };

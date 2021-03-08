@@ -16,4 +16,8 @@ export const Container = styled.button`
   &:hover {
     background: ${({ theme }) => shade(0.2, theme.colors.orange)};
   }
+
+  svg {
+    padding-top: 0.4rem;
+  }
 `;

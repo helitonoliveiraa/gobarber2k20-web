@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import { FiLogIn, FiMail, FiLock } from 'react-icons/fi';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
@@ -29,6 +29,7 @@ interface SignInFormData {
 }
 
 const SignIn: React.FC = () => {
+  const [loading, setLoading] = useState(false);
   const formRef = useRef<FormHandles>(null);
 
   const history = useHistory();
@@ -39,6 +40,8 @@ const SignIn: React.FC = () => {
   const handleLogin = useCallback(
     async (data: SignInFormData) => {
       try {
+        setLoading(true);
+
         formRef.current?.setErrors({});
 
         const schema = Yup.object().shape({
@@ -70,6 +73,8 @@ const SignIn: React.FC = () => {
           title: 'Erro na autenticação!',
           description: 'Ocorreu um erro ao fazer login, cheque as credenciais.',
         });
+      } finally {
+        setLoading(false);
       }
     },
     [signIn, addToast, history],
@@ -77,7 +82,12 @@ const SignIn: React.FC = () => {
 
   return (
     <Container>
-      <Content>
+      <Content
+        initial={{ scaleY: 1, opacity: 1 }}
+        animate={{ scaleY: 1, opacity: 1 }}
+        exit={{ scaleY: 0, opacity: 0 }}
+        transition={{ duration: 0.5 }}
+      >
         <AnimationContainer>
           <img src={logoImg} alt="GoBarber" />
 
@@ -93,19 +103,26 @@ const SignIn: React.FC = () => {
               placeholder="Senha"
             />
 
-            <Button type="submit">Entrar</Button>
+            <Button type="submit" loading={loading}>
+              Entrar
+            </Button>
 
             <Link to="/forgot-password">Esqueci minha senha</Link>
           </Form>
 
           <Link to="/signup">
-            <FiLogIn size={20} />
+            <FiLogIn size="2rem" />
             Criar conta
           </Link>
         </AnimationContainer>
       </Content>
 
-      <Background />
+      <Background
+        initial={{ translateX: 0, opacity: 0 }}
+        animate={{ translateX: 0, opacity: 1 }}
+        exit={{ translateX: -700, opacity: 0 }}
+        transition={{ duration: 0.5 }}
+      />
     </Container>
   );
 };

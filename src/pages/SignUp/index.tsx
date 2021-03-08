@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import {
   // eslint-disable-next-line indent
   FiArrowLeft,
@@ -35,6 +35,7 @@ interface SignUpFormData {
 }
 
 const SignUp: React.FC = () => {
+  const [loading, setLoading] = useState(false);
   const formRef = useRef<FormHandles>(null);
 
   const history = useHistory();
@@ -43,6 +44,8 @@ const SignUp: React.FC = () => {
   const handleSubmit = useCallback(
     async (data: SignUpFormData) => {
       try {
+        setLoading(true);
+
         formRef.current?.setErrors({});
 
         const schema = Yup.object().shape({
@@ -80,6 +83,8 @@ const SignUp: React.FC = () => {
           title: 'Erro no cadastro!',
           description: 'Ocorreu um erro ao fazer cadastro, tente novamente.',
         });
+      } finally {
+        setLoading(false);
       }
     },
     [addToast, history],
@@ -87,9 +92,19 @@ const SignUp: React.FC = () => {
 
   return (
     <Container>
-      <Background />
+      <Background
+        initial={{ translateX: 0, opacity: 0 }}
+        animate={{ translateX: 0, opacity: 1 }}
+        exit={{ translateX: 660, opacity: 0 }}
+        transition={{ duration: 0.5 }}
+      />
 
-      <Content>
+      <Content
+        initial={{ scaleY: 1, opacity: 1 }}
+        animate={{ scaleY: 1, opacity: 1 }}
+        exit={{ scaleY: 0, opacity: 0 }}
+        transition={{ duration: 0.5 }}
+      >
         <AnimationContainer>
           <img src={logoImg} alt="GoBarber" />
 
@@ -107,11 +122,13 @@ const SignUp: React.FC = () => {
               placeholder="Senha"
             />
 
-            <Button type="submit">Cadastrar</Button>
+            <Button type="submit" loading={loading}>
+              Cadastrar
+            </Button>
           </Form>
 
           <Link to="/">
-            <FiArrowLeft size={20} />
+            <FiArrowLeft size="2rem" />
             Voltar para login
           </Link>
         </AnimationContainer>

@@ -1,7 +1,4 @@
-// eslint-disable-next-line prettier/prettier
-import React, {
-  useCallback, useEffect, useMemo, useState,
-} from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { FiClock, FiPower } from 'react-icons/fi';
 import { isToday, format, parseISO, isAfter } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
@@ -11,8 +8,9 @@ import 'react-day-picker/lib/style.css';
 import { Link } from 'react-router-dom';
 import logoImg from '../../assets/logo.svg';
 import { useAuth } from '../../context/hooks/Auth';
+import Loading from '../../components/Loading';
+import avatarPlaceholder from '../../assets/avatar-placeholder.png';
 
-// eslint-disable-next-line prettier/prettier
 import {
   Container,
   Header,
@@ -47,6 +45,8 @@ const Dashboard: React.FC = () => {
 
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [currentMonth, setCurrentMonth] = useState(new Date());
+
+  const [loading, setLoading] = useState(true);
 
   const [monthAvailability, setMonthAvailability] = useState<
     MonthAvailabilityItem[]
@@ -97,6 +97,7 @@ const Dashboard: React.FC = () => {
         });
 
         setAppointments(appointmentsFormatted);
+        setLoading(false);
       });
   }, [selectedDate]);
 
@@ -162,7 +163,7 @@ const Dashboard: React.FC = () => {
           <img src={logoImg} alt="Gobarber" />
 
           <Profile>
-            <img src={user.avatar_url} alt={user.name} />
+            <img src={user.avatar_url || avatarPlaceholder} alt={user.name} />
 
             <div>
               <span>Bem vindo,</span>
@@ -173,7 +174,7 @@ const Dashboard: React.FC = () => {
           </Profile>
 
           <button type="button" onClick={signOut}>
-            <FiPower size={20} />
+            <FiPower size="2rem" />
           </button>
         </HeaderContent>
       </Header>
@@ -194,14 +195,14 @@ const Dashboard: React.FC = () => {
 
               <div>
                 <img
-                  src={nextAppointment.user.avatar_url}
+                  src={nextAppointment.user.avatar_url || avatarPlaceholder}
                   alt={nextAppointment.user.name}
                 />
 
                 <strong>{nextAppointment.user.name}</strong>
 
                 <span>
-                  <FiClock size={24} />
+                  <FiClock size="2.4rem" />
                   {nextAppointment.hourFormatted}
                 </span>
               </div>
@@ -211,20 +212,24 @@ const Dashboard: React.FC = () => {
           <Section>
             <strong>Manhâ</strong>
 
-            {morningAppointments.length === 0 && (
-              <p>Nenhum agendamento para esse período</p>
+            {loading ? (
+              <Loading />
+            ) : (
+              morningAppointments.length === 0 && (
+                <p>Nenhum agendamento para esse período</p>
+              )
             )}
 
             {morningAppointments.map(appointment => (
               <Appointment key={appointment.id}>
                 <span>
-                  <FiClock size={20} />
+                  <FiClock size="2rem" />
                   {appointment.hourFormatted}
                 </span>
 
                 <div>
                   <img
-                    src={appointment.user.avatar_url}
+                    src={appointment.user.avatar_url || avatarPlaceholder}
                     alt={appointment.user.name}
                   />
                   <strong>{appointment.user.name}</strong>
@@ -236,20 +241,24 @@ const Dashboard: React.FC = () => {
           <Section>
             <strong>Tarde</strong>
 
-            {afternoonAppointments.length === 0 && (
-              <p>Nenhum agendamento para esse período</p>
+            {loading ? (
+              <Loading />
+            ) : (
+              afternoonAppointments.length === 0 && (
+                <p>Nenhum agendamento para esse período</p>
+              )
             )}
 
             {afternoonAppointments.map(appointment => (
               <Appointment key={appointment.id}>
                 <span>
-                  <FiClock size={20} />
+                  <FiClock size="2rem" />
                   {appointment.hourFormatted}
                 </span>
 
                 <div>
                   <img
-                    src={appointment.user.avatar_url}
+                    src={appointment.user.avatar_url || avatarPlaceholder}
                     alt={appointment.user.name}
                   />
                   <strong>{appointment.user.name}</strong>

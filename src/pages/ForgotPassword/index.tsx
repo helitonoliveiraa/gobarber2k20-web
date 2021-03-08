@@ -83,7 +83,12 @@ const ForgotPassword: React.FC = () => {
 
   return (
     <Container>
-      <Content>
+      <Content
+        initial={{ scaleY: 1, opacity: 1 }}
+        animate={{ scaleY: 1, opacity: 1 }}
+        exit={{ scaleY: 0, opacity: 0 }}
+        transition={{ duration: 0.5 }}
+      >
         <AnimationContainer>
           <img src={logoImg} alt="GoBarber" />
 
@@ -104,7 +109,12 @@ const ForgotPassword: React.FC = () => {
         </AnimationContainer>
       </Content>
 
-      <Background />
+      <Background
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.5 }}
+      />
     </Container>
   );
 };
