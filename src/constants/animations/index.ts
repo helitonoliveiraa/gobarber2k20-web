@@ -23,6 +23,17 @@ to {
 }
 `;
 
+export const CARD_APPEAR_FROM_RIGHT = keyframes`
+  from {
+  opacity: 0;
+  transform: translateX(4rem);
+}
+to {
+  opacity: 1;
+  transform: translateX(0);
+}
+`;
+
 export const FADE_IN_TEXT = keyframes`
 from {
   opacity: 0;

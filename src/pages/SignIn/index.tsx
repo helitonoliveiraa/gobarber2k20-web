@@ -4,6 +4,7 @@ import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
 import { Link, useHistory } from 'react-router-dom';
+
 import getValidationErrors from '../../utils/validationErros';
 
 import { useAuth } from '../../context/hooks/Auth';
@@ -81,7 +82,12 @@ const SignIn: React.FC = () => {
 
   return (
     <Container>
-      <Content>
+      <Content
+        initial={{ scaleY: 1, opacity: 1 }}
+        animate={{ scaleY: 1, opacity: 1 }}
+        exit={{ scaleY: 0, opacity: 0 }}
+        transition={{ duration: 0.5 }}
+      >
         <AnimationContainer>
           <img src={logoImg} alt="GoBarber" />
 
@@ -111,7 +117,12 @@ const SignIn: React.FC = () => {
         </AnimationContainer>
       </Content>
 
-      <Background />
+      <Background
+        initial={{ translateX: 0, opacity: 0 }}
+        animate={{ translateX: 0, opacity: 1 }}
+        exit={{ translateX: -700, opacity: 0 }}
+        transition={{ duration: 0.5 }}
+      />
     </Container>
   );
 };

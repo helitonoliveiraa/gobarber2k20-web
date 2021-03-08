@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { shade } from 'polished';
-import { APPEAR_FROM_LEFT } from '../../constants/animations';
+import { motion } from 'framer-motion';
+import { APPEAR_FROM_LEFT, FADE } from '../../constants/animations';
 
 import backgroundImg from '../../assets/sign-in-background.png';
 
@@ -11,7 +12,7 @@ export const Container = styled.div`
   align-items: stretch;
 `;
 
-export const Content = styled.main`
+export const Content = styled(motion.main)`
   max-width: 66rem;
   width: 100%;
   padding: 0 2rem;
@@ -86,8 +87,10 @@ export const AnimationContainer = styled.div`
   }
 `;
 
-export const Background = styled.div`
+export const Background = styled(motion.div)`
   flex: 1;
   background: url(${backgroundImg}) no-repeat center;
   background-size: cover;
+
+  animation: ${FADE} 0.7s ease-in;
 `;

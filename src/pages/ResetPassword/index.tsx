@@ -90,7 +90,12 @@ const ResetPassword: React.FC = () => {
 
   return (
     <Container>
-      <Content>
+      <Content
+        initial={{ scaleY: 1 }}
+        animate={{ scaleY: 1 }}
+        exit={{ scaleY: 0 }}
+        transition={{ duration: 0.5 }}
+      >
         <AnimationContainer>
           <img src={logoImg} alt="GoBarber" />
 
@@ -111,12 +116,19 @@ const ResetPassword: React.FC = () => {
               placeholder="Confirmação da senha"
             />
 
-            <Button type="submit">Alterar senha</Button>
+            <Button type="submit" loading={loading}>
+              Alterar senha
+            </Button>
           </Form>
         </AnimationContainer>
       </Content>
 
-      <Background />
+      <Background
+        initial={{ translateX: 0, opacity: 0 }}
+        animate={{ translateX: 0, opacity: 1 }}
+        exit={{ translateX: -700, opacity: 0 }}
+        transition={{ duration: 0.5 }}
+      />
     </Container>
   );
 };

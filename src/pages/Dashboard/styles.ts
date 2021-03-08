@@ -6,6 +6,7 @@ import {
   FADE_IN_TEXT,
   FADE,
   BLINK_NEXT_APPOINTMENT,
+  CARD_APPEAR_FROM_RIGHT,
 } from '../../constants/animations';
 
 import { CustumCalendar } from '../../components/CustomCalendar/styles';
@@ -207,8 +208,9 @@ export const NextAppointment = styled.div`
       ${appointmentCard};
       z-index: 5;
 
-      animation: ${BLINK_NEXT_APPOINTMENT} 2s infinite;
-      animation: ${APPEAR_FROM_RIGHT} 1s linear;
+      animation: ${BLINK_NEXT_APPOINTMENT} 2s infinite,
+        ${CARD_APPEAR_FROM_RIGHT} 1s linear;
+      /* animation: ${APPEAR_FROM_RIGHT} 1s linear; */
 
       box-shadow: 0 0.5rem 0.6rem rgba(0, 0, 0, 0.19),
         0 0.3rem 0.3rem rgba(0, 0, 0, 0.23);
@@ -296,7 +298,7 @@ export const Appointment = styled.div`
     box-shadow: 0 0.5rem 0.6rem rgba(0, 0, 0, 0.19),
       0 0.3rem 0.3rem rgba(0, 0, 0, 0.23);
 
-    animation: ${APPEAR_FROM_RIGHT} 1s linear;
+    animation: ${CARD_APPEAR_FROM_RIGHT} 1s linear;
 
     img {
       width: 5.6rem;
