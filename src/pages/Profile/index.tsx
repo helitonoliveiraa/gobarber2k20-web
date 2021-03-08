@@ -1,7 +1,6 @@
 /* eslint-disable prettier/prettier */
-import React, { ChangeEvent, useCallback, useRef } from 'react';
+import React, { ChangeEvent, useCallback, useRef, useState } from 'react';
 import {
-  // eslint-disable-next-line indent
   FiCamera,
   FiArrowLeft,
   FiMail,
@@ -20,7 +19,6 @@ import Input from '../../components/Input';
 import Button from '../../components/Button';
 
 import {
-  // eslint-disable-next-line indent
   Container,
   Header,
   HeaderContent,
@@ -29,6 +27,7 @@ import {
   AnimationContainer,
 } from './styles';
 import { useAuth } from '../../context/hooks/Auth';
+import avatarPlaceholder from '../../assets/avatar-placeholder.png';
 
 interface SignUpFormData {
   name: string;
@@ -39,6 +38,8 @@ interface SignUpFormData {
 }
 
 const Profile: React.FC = () => {
+  const [loading, setLoading] = useState(false);
+
   const formRef = useRef<FormHandles>(null);
 
   const history = useHistory();
@@ -49,6 +50,8 @@ const Profile: React.FC = () => {
   const handleSubmit = useCallback(
     async (data: SignUpFormData) => {
       try {
+        setLoading(true);
+
         formRef.current?.setErrors({});
 
         const schema = Yup.object().shape({
@@ -121,6 +124,8 @@ const Profile: React.FC = () => {
           title: 'Erro na atualização!',
           description: 'Ocorreu um erro ao atualizar perfil, tente novamente.',
         });
+      } finally {
+        setLoading(false);
       }
     },
     [addToast, history, updateUser],
@@ -155,7 +160,7 @@ const Profile: React.FC = () => {
           </Link>
 
           <PhotoContainer>
-            <img src={user.avatar_url} alt={user.name} />
+            <img src={user.avatar_url || avatarPlaceholder} alt={user.name} />
 
             <label htmlFor="avatar">
               <FiCamera />
@@ -204,7 +209,7 @@ const Profile: React.FC = () => {
               placeholder="Confirmar senha"
             />
 
-            <Button type="submit">Confirmar mudanças</Button>
+            <Button type="submit" loading={loading}>Confirmar mudanças</Button>
           </Form>
         </AnimationContainer>
       </Content>

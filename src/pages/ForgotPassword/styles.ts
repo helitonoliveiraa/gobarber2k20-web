@@ -1,5 +1,7 @@
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import { shade } from 'polished';
+import { motion } from 'framer-motion';
+import { APPEAR_FROM_LEFT, FADE } from '../../constants/animations';
 
 import backgroundImg from '../../assets/sign-in-background.png';
 
@@ -10,7 +12,7 @@ export const Container = styled.div`
   align-items: stretch;
 `;
 
-export const Content = styled.div`
+export const Content = styled(motion.main)`
   max-width: 66rem;
   width: 100%;
 
@@ -20,26 +22,20 @@ export const Content = styled.div`
   justify-content: center;
 `;
 
-const apearFromLeft = keyframes`
-  from {
-    opacity: 0;
-    transform: translateX(-5rem);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-`;
-
 export const AnimationContainer = styled.div`
   width: 100%;
+  padding: 0 2rem;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 
-  animation: ${apearFromLeft} 0.7s ease-in;
+  animation: ${APPEAR_FROM_LEFT} 0.7s ease-in;
+
+  img {
+    width: 23.1rem;
+  }
 
   form {
     max-width: 36rem;
@@ -92,8 +88,10 @@ export const AnimationContainer = styled.div`
   }
 `;
 
-export const Background = styled.div`
+export const Background = styled(motion.div)`
   flex: 1;
   background: url(${backgroundImg}) no-repeat center;
   background-size: cover;
+
+  animation: ${FADE} 0.7s ease-in;
 `;
