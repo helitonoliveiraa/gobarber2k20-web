@@ -74,6 +74,7 @@ export const PhotoContainer = styled.div`
       height: 18.6rem;
       border-radius: 50%;
       object-fit: cover;
+      background: ${theme.colors.gray};
 
       box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.19),
         0 0.6rem 0.6rem rgba(0, 0, 0, 0.23);

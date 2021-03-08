@@ -74,6 +74,7 @@ export const Profile = styled.div`
         border-radius: 50%;
         margin: 0 1.6rem 0 8rem;
         object-fit: cover;
+        background: ${theme.colors.gray};
 
         @media (max-width: 600px) {
           margin-left: 0;
