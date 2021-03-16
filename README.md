@@ -13,8 +13,8 @@
     <img alt="Made by Héliton Oliveira" src="https://img.shields.io/badge/made%20by-Héliton Oliveira-%23FF9000">
   </a>
 
-  <a href="https://github.com/helitonoliveiraa/gobarber-web/commits/master">
-    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/helitonoliveiraa/gobarber-web?color=%23FF9000">
+  <a href="https://github.com/helitonoliveiraa/gobarber2k20-web?/commits/master">
+    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/helitonoliveiraa/gobarber2k20-web??color=%23FF9000">
   </a>
 
   <img alt="License" src="https://img.shields.io/badge/license-MIT-%23FF9000">
