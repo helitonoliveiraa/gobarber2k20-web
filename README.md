@@ -19,7 +19,7 @@
 
   <img alt="License" src="https://img.shields.io/badge/license-MIT-%23FF9000">
 
-  <a href="https://github.com/helitonoliveiraa/gobarber2k20-web/stargazers">
+  <a href="https://github.com/helitonoliveiraa/gobarber2k20-web/stargazers" >
     <img alt="Stargazers" src="https://img.shields.io/github/stars/helitonoliveiraa/gobarber2k20-web?style=social">
   </a>
 </p>
@@ -35,6 +35,18 @@
   <img src="./.github/animation1.gif">
 
   <img src="./.github/animation2.gif">
+</p>
+
+<p align="center">
+  <a href="https://reactdeploy.heliton.dev/">
+    <img src="https://res.cloudinary.com/dzn5ixmhq/image/upload/v1612276477/button-netlify_gg2ey0.png" />
+  </a>
+
+  <br />
+
+  <a href="https://www.youtube.com/watch?v=I4ptIFSG4Ps">
+    <img src="https://res.cloudinary.com/dzn5ixmhq/image/upload/v1615903869/png-transparent-youtube-computer-icons-logo-youtube-angle-social-media-share-icon_1_kz6zg8.png" width="50">
+  </a>
 </p>
 
 # :rocket: About the project
