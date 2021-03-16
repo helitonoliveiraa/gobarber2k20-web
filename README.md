@@ -13,8 +13,8 @@
     <img alt="Made by Héliton Oliveira" src="https://img.shields.io/badge/made%20by-Héliton Oliveira-%23FF9000">
   </a>
 
-  <a href="https://github.com/helitonoliveiraa/gobarber2k20-web/commits/master">
-    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/helitonoliveiraa/gobarber2k20-web?color=%23FF9000">
+  <a href="https://github.com/helitonoliveiraa/gobarber-web/commits/master">
+    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/helitonoliveiraa/gobarber-web?color=%23FF9000">
   </a>
 
   <img alt="License" src="https://img.shields.io/badge/license-MIT-%23FF9000">
@@ -32,9 +32,9 @@
 </p>
 
 <p align="center">
-  <img src="https://res.cloudinary.com/dzn5ixmhq/image/upload/v1615852406/gobarber/animation1_y1krw7.gif" alt="Animation login">
+  <img src="./.github/animation1.gif">
 
-  <img src="https://res.cloudinary.com/dzn5ixmhq/image/upload/v1615851672/gobarber/animation2_wxosbo.gif" alt="Animation dashboard">
+  <img src="./.github/animation2.gif">
 </p>
 
 # :rocket: About the project
