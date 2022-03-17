@@ -38,7 +38,7 @@
 </p>
 
 <p align="center">
-  <a href="https://reactdeploy.heliton.dev/">
+  <a href="https://keen-goodall-822c5d.netlify.app/">
     <img src="https://res.cloudinary.com/dzn5ixmhq/image/upload/v1612276477/button-netlify_gg2ey0.png" />
   </a>
 
